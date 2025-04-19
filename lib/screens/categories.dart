@@ -77,10 +77,14 @@ class _CategoriesScreenState extends State<CategoriesScreen>
                 ))
             .toList(),
       ),
-      builder: (context, child) => Padding(
-        // The child widget is a widget mainly should be outputed as part of an animated content,
-        // but should not be animated themselves, therby increasing performance.
-        padding: EdgeInsets.only(top: 100 - _animationController.value * 100),
+      builder: (context, child) => SlideTransition(
+        position: Tween(
+          begin: const Offset(0, 0.3),
+          end: const Offset(0, 0),
+        ).animate(CurvedAnimation(
+          parent: _animationController,
+          curve: Curves.easeInOut,
+        )),
         child: child,
       ),
     );
